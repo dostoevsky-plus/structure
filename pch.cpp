@@ -21,6 +21,10 @@ namespace simple_shapes {
 	void OutTraine(traine *t, ofstream &ofst);
 
 	float Travel_time(transport &s);
+	bool Compare(transport *first, transport* second);
+	void Sort(container &c);
+	void castl(Node* &current);
+	void pocesssort(Node*& headt, Node*& current);
 
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
@@ -163,5 +167,68 @@ namespace simple_shapes {
 		travel_time = static_cast<float>(s.distance) / static_cast<float>(s.spead);
 		return travel_time;
 	}
+	bool Compare(transport * first, transport * second)
+	{
+		return Travel_time(*first) < Travel_time(*second);
+	}
+
+	void Sort(container & c)
+	{
+		Node* current;
+		current = c.Top;
+		Node* currentnext = current->Next;
+		for (int i = 1; i < c.count; i++) {
+			for (int j = 1; j < c.count; j++) {
+				if (Compare(current->data, current->Next->data)) {
+					pocesssort(c.Top, current);
+				}
+				else
+				current = current->Next;
+			}
+			current = c.Top;
+		}
+	}
+	void castl(Node* &current)
+	{
+		Node* currentnext = current->Next;
+		//Создаем копии, для смены местами
+		Node* q1 = current;
+		Node* q2 = currentnext;
+		current = q2;
+		currentnext = q1;
+		currentnext->Next = current->Next;
+		current->Next = currentnext;
+		current->Prev = currentnext->Prev;
+		currentnext->Prev = current;
+		currentnext = current->Next;
+		currentnext->Next->Prev = currentnext;
+		current->Prev->Next = current;
+	}
+	void pocesssort(Node *& headt, Node *& current)
+	{
+		Node* currentnext = current->Next;
+		if (current == headt)//определяем указывает ли на голову
+		{
+			if (current->Next->Next == current)
+			{
+				headt = current->Next;
+			}
+			else
+			{
+				castl(current);
+				headt = current;
+			}
+		}
+		else
+		{
+			if (current->Next->Next == current)
+			{
+				headt = current->Next;
+			}
+			else
+			castl(current);
+		}
+	}
+	;
 }
 

@@ -17,6 +17,10 @@ namespace simple_shapes {
 	void Out(Node *s, ofstream &ofst);
 	int addlist(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
+
+	float Travel_time(transport &s);
+	bool Compare(transport *first, transport* second);
+	void Sort(container &c);
 }
 using namespace simple_shapes;
 int main(int argc, char* argv[])
@@ -36,6 +40,8 @@ int main(int argc, char* argv[])
 	Init(c);
 	In(c, ifst);
 	ofst << "Filled container. " << endl;
+
+	Sort(c);
 
 	Out(c, ofst);
 	Clear(c);
