@@ -9,10 +9,9 @@
 #ifndef PCH_H
 #define PCH_H
 
-enum type_of_key {PLANE,TRAINE, SHIP};
-enum type_of_ship { LINER, TUG, TANKER };
+enum type {PLANE,TRAINE};
 struct plane {
-	type_of_key key;
+	type key;
 	int spead;
 	int distance;
 	int range;
@@ -20,20 +19,13 @@ struct plane {
 };
 struct traine {
 
-	type_of_key key;
+	type key;
 	int spead;
 	int distance;
 	int count;
 };
-struct ship {
-	type_of_key key;
-	int spead;
-	int distance;
-	int water_displacement;
-	type_of_ship type;
-};
 struct transport {
-	type_of_key key;
+	type key;
 	int spead;
 	int distance;
 };
