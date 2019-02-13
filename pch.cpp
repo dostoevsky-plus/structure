@@ -12,6 +12,7 @@ namespace simple_shapes {
 	void Clear(container &c);
 	plane* InPlane(plane &p, ifstream &ifst);
 	traine* InTraine(traine &t, ifstream &ifst);
+	ship* InShip(ship &shp, ifstream &ifst);
 	transport* In(ifstream &ifst);
 	void In(container &c, ifstream &ifst);
 	void OutPlane(plane *p, ofstream &ofst);
@@ -19,6 +20,8 @@ namespace simple_shapes {
 	void Out(transport *s, ofstream &ofst);
 	int addnode(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
+	void OutShip(ship *shp, ofstream &ofst);
+
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
 		ifst >> p.c  >> p.range ;
@@ -31,11 +34,29 @@ namespace simple_shapes {
 		return &t;
 	}
 
+	ship * InShip(ship & shp, ifstream & ifst)
+	{
+		int t;
+		ifst >> shp.water_displacement >> t;
+		if (t == 1)
+		{
+			shp.type = LINER;
+		}
+		else
+			if (t == 2)
+			{
+				shp.type = TUG;
+			}else
+				if (t == 3)
+				{
+					shp.type = LINER;
+				}
+		return &shp;
+	}
 	void Init(container & c)
 	{
 		c.Top = nullptr;
 		c.count = 0;
-
 	}
 
 	void Clear(container & c)
@@ -57,6 +78,20 @@ namespace simple_shapes {
 		ofst << "It is Plane: грузоподъемность = " << p->c
 			<< ", дальность полета = " << p->range ;
 	}
+	void OutTraine(traine * t, ofstream &ofst)
+	{
+		ofst << "It is Traine: кол-во вагонов = " << t->count;
+	}
+	void OutShip(ship * shp, ofstream &ofst)
+	{
+		ofst << "It is Ship: Водоизмещение = " << shp->water_displacement << ", тип судна =" ;
+		if (shp->type == LINER)
+			ofst << "LINER";
+		else if (shp->type == TANKER)
+			ofst << "TANKER";
+		else if (shp->type == TUG) ofst << "TUG";
+
+	}
 	void Out(container & c, ofstream &ofst)
 	{
 		Node* current = c.Top;
@@ -77,6 +112,10 @@ namespace simple_shapes {
 			break;
 		case TRAINE:
 			OutTraine((traine*)s, ofst);
+			ofst << ", расстояние мужду пунктами = " << s->distance << ", скорость = " << s->spead << endl;
+			break;
+		case SHIP:
+			OutShip((ship*)s, ofst);
 			ofst << ", расстояние мужду пунктами = " << s->distance << ", скорость = " << s->spead << endl;
 			break;
 		default:
@@ -117,10 +156,7 @@ namespace simple_shapes {
 			}
 		}
 	}
-	void OutTraine(traine * t, ofstream &ofst)
-	{
-		ofst << "It is Traine: кол-во вагонов = " << t->count;
-	}
+	
 	void In(container &c, ifstream &ifst)
 
 	{
@@ -150,6 +186,15 @@ namespace simple_shapes {
 			return s;
 		}
 		else
+			if (key == 3)
+			{
+				ship* shp  = new ship;
+				s = (transport*)InShip(*shp, ifst);
+				s->key = SHIP;
+				ifst >> s->distance >> s->spead;
+				return s;
+			}
+			else
 			return 0;
 	}
 }
