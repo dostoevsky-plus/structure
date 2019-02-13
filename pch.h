@@ -14,6 +14,7 @@ struct plane {
 	type key;
 	int spead;
 	int distance;
+	int cargo;
 	int range;
 	int c;
 };

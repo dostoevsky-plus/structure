@@ -21,7 +21,7 @@ namespace simple_shapes {
 	void OutTraine(traine *t, ofstream &ofst);
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
-		ifst >> p.c  >> p.range ;
+		ifst >> p.c  >> p.range >> p.cargo ;
 		return &p;
 	}
 
@@ -55,7 +55,7 @@ namespace simple_shapes {
 	void OutPlane(plane *p, ofstream &ofst)
 	{
 		ofst << "It is Plane: грузоподъемность = " << p->c
-			<< ", дальность полета = " << p->range ;
+			<< ", дальность полета = " << p->range << ", груз в данный момент = " << p->cargo ;
 	}
 	void Out(container & c, ofstream &ofst)
 	{
