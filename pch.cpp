@@ -19,6 +19,9 @@ namespace simple_shapes {
 	void Out(transport *s, ofstream &ofst);
 	int addnode(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
+
+	float Travel_time(transport &s);
+
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
 		ifst >> p.c  >> p.range ;
@@ -65,6 +68,8 @@ namespace simple_shapes {
 		for (int j = 0; j < c.count; j++) {
 			ofst << j << ": ";
 			Out(current->data, ofst);
+			ofst << "идеальное время пути = "
+				<< Travel_time(*(current->data)) /*<< "часа(ов)"*/ << endl;
 			current = current->Next;
 		}
 	}
@@ -151,6 +156,12 @@ namespace simple_shapes {
 		}
 		else
 			return 0;
+	}
+	float Travel_time(transport &s)
+	{
+		float travel_time;
+		travel_time = static_cast<float>(s.distance) / static_cast<float>(s.spead);
+		return travel_time;
 	}
 }
 
