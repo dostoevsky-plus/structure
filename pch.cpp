@@ -19,15 +19,18 @@ namespace simple_shapes {
 	void Out(transport *s, ofstream &ofst);
 	int addnode(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
+
+	void Out_only_plane(container &c, ofstream &ofst);
+
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
-		ifst >> p.c  >> p.range ;
+		ifst >> p.c >> p.range;
 		return &p;
 	}
 
 	traine * InTraine(traine & t, ifstream &ifst)
 	{
-		ifst >> t.count ;
+		ifst >> t.count;
 		return &t;
 	}
 
@@ -55,7 +58,7 @@ namespace simple_shapes {
 	void OutPlane(plane *p, ofstream &ofst)
 	{
 		ofst << "It is Plane: грузоподъемность = " << p->c
-			<< ", дальность полета = " << p->range ;
+			<< ", дальность полета = " << p->range;
 	}
 	void Out(container & c, ofstream &ofst)
 	{
@@ -152,5 +155,17 @@ namespace simple_shapes {
 		else
 			return 0;
 	}
-}
+	void Out_only_plane(container &c, ofstream &ofst) {
+		ofst << "Only planes." << endl;
+		Node* current = c.Top;
+		for (int i = 0; i < c.count; i++) {
+			ofst << i << ": ";
+			if (current->data->key == type::PLANE)
+				Out(current->data, ofst);
+			else
+				ofst << endl;
+			current = current->Next;
+			
+		}
+	}}
 

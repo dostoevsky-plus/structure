@@ -17,6 +17,8 @@ namespace simple_shapes {
 	void Out(Node *s, ofstream &ofst);
 	int addlist(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
+
+	void Out_only_plane(container &c, ofstream &ofst);
 }
 using namespace simple_shapes;
 int main(int argc, char* argv[])
@@ -37,7 +39,7 @@ int main(int argc, char* argv[])
 	In(c, ifst);
 	ofst << "Filled container. " << endl;
 
-	Out(c, ofst);
+	Out_only_plane(c, ofst);
 	Clear(c);
 	ofst << "Empty container. " << endl;
 	Out(c, ofst);
