@@ -278,20 +278,20 @@ namespace simple_shapes {
 		}
 	}
 	;
-}
-
 	void Out_only_plane(container &c, ofstream &ofst) {
 		ofst << "Only planes." << endl;
 		Node* current = c.Top;
 		for (int i = 0; i < c.count; i++) {
 			ofst << i << ": ";
-			if (current->data->key == type::PLANE)
+			if (current->data->key == type_of_key::PLANE)
 				Out(current->data, ofst);
 			else
 				ofst << endl;
 			current = current->Next;
-			
 		}
-	}}
+	}
+}
+
+	
 
 

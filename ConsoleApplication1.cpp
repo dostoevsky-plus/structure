@@ -43,6 +43,7 @@ int main(int argc, char* argv[])
 	In(c, ifst);
 	ofst << "Filled container. " << endl;
 
+	Out(c, ofst);
 
 	Sort(c);
 	ofst << endl;
