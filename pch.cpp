@@ -22,6 +22,7 @@ namespace simple_shapes {
 	void OutTraine(traine *t, ofstream &ofst);
 
 
+
 	float Travel_time(transport &s);
 	bool Compare(transport *first, transport* second);
 	void Sort(container &c);
@@ -32,12 +33,15 @@ namespace simple_shapes {
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
 		ifst >> p.c  >> p.range >> p.cargo ;
+
+	void Out_only_plane(container &c, ofstream &ofst);
+
 		return &p;
 	}
 
 	traine * InTraine(traine & t, ifstream &ifst)
 	{
-		ifst >> t.count ;
+		ifst >> t.count;
 		return &t;
 	}
 
@@ -97,7 +101,6 @@ namespace simple_shapes {
 		else if (shp->type == TANKER)
 			ofst << "TANKER";
 		else if (shp->type == TUG) ofst << "TUG";
-
 	}
 	void Out(container & c, ofstream &ofst)
 	{
@@ -276,4 +279,19 @@ namespace simple_shapes {
 	}
 	;
 }
+
+	void Out_only_plane(container &c, ofstream &ofst) {
+		ofst << "Only planes." << endl;
+		Node* current = c.Top;
+		for (int i = 0; i < c.count; i++) {
+			ofst << i << ": ";
+			if (current->data->key == type::PLANE)
+				Out(current->data, ofst);
+			else
+				ofst << endl;
+			current = current->Next;
+			
+		}
+	}}
+
 

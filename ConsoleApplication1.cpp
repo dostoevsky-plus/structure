@@ -18,9 +18,11 @@ namespace simple_shapes {
 	int addlist(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
 
+
 	float Travel_time(transport &s);
 	bool Compare(transport *first, transport* second);
 	void Sort(container &c);
+	void Out_only_plane(container &c, ofstream &ofst);
 }
 using namespace simple_shapes;
 int main(int argc, char* argv[])
@@ -41,10 +43,17 @@ int main(int argc, char* argv[])
 	In(c, ifst);
 	ofst << "Filled container. " << endl;
 
-	Sort(c);
 
+	Sort(c);
+	ofst << endl;
 	Out(c, ofst);
+
+	ofst << endl;
+	Out_only_plane(c, ofst);
+
+	ofst << endl;
 	Clear(c);
+
 	ofst << "Empty container. " << endl;
 	Out(c, ofst);
 	cout << "Stop" << endl;
