@@ -26,8 +26,8 @@ namespace simple_shapes {
 	float Travel_time(transport &s);
 	bool Compare(transport *first, transport* second);
 	void Sort(container &c);
-	void castl(Node* &current);
-	void pocesssort(Node*& headt, Node*& current);
+	void castl(Node* &current, Node*&currentnext);
+	void pocesssort(Node*& headt, Node*& current, Node*& currentnext);
 	void OutShip(ship *shp, ofstream &ofst);
 
 	plane * InPlane(plane & p, ifstream & ifst)
@@ -228,7 +228,9 @@ namespace simple_shapes {
 		for (int i = 1; i < c.count; i++) {
 			for (int j = 1; j < c.count; j++) {
 				if (Compare(current->data, current->Next->data)) {
-					pocesssort(c.Top, current);
+					currentnext = current->Next;
+					pocesssort(c.Top, current, currentnext);
+					current = current->Next;
 				}
 				else
 				current = current->Next;
@@ -236,13 +238,15 @@ namespace simple_shapes {
 			current = c.Top;
 		}
 	}
-	void castl(Node* &current)
+	void castl(Node* &current, Node* &currentnext)
 	{
-		Node* currentnext = current->Next;
+		//Node* currentnext = current->Next;
 		//Создаем копии, для смены местами
-		Node* q1 = current;
-		Node* q2 = currentnext;
-		current = q2;
+		transport * q1 = current->data;
+		transport * q2 = currentnext->data;
+		current->data = q2;
+		currentnext->data = q1;
+		/*current = q2;
 		currentnext = q1;
 		currentnext->Next = current->Next;
 		current->Next = currentnext;
@@ -250,11 +254,11 @@ namespace simple_shapes {
 		currentnext->Prev = current;
 		currentnext = current->Next;
 		currentnext->Next->Prev = currentnext;
-		current->Prev->Next = current;
+		current->Prev->Next = current;*/
 	}
-	void pocesssort(Node *& headt, Node *& current)
+	void pocesssort(Node *& headt, Node *& current, Node* &currentnext)
 	{
-		Node* currentnext = current->Next;
+		//Node* currentnext = current->Next;
 		if (current == headt)//определяем указывает ли на голову
 		{
 			if (current->Next->Next == current)
@@ -263,8 +267,8 @@ namespace simple_shapes {
 			}
 			else
 			{
-				castl(current);
-				headt = current;
+				castl(current, currentnext);
+				//headt = current;
 			}
 		}
 		else
@@ -274,7 +278,7 @@ namespace simple_shapes {
 				headt = current->Next;
 			}
 			else
-			castl(current);
+			castl(current, currentnext);
 		}
 	}
 	;
