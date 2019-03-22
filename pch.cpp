@@ -27,7 +27,7 @@ namespace simple_shapes {
 	bool Compare(transport *first, transport* second);
 	void Sort(container &c);
 	void castl(Node* &current, Node*&currentnext);
-	void pocesssort(Node*& headt, Node*& current, Node*& currentnext);
+	//void pocesssort(Node*& headt, Node*& current, Node*& currentnext);
 	void OutShip(ship *shp, ofstream &ofst);
 
 	plane * InPlane(plane & p, ifstream & ifst)
@@ -229,7 +229,8 @@ namespace simple_shapes {
 			for (int j = 1; j < c.count; j++) {
 				if (Compare(current->data, current->Next->data)) {
 					currentnext = current->Next;
-					pocesssort(c.Top, current, currentnext);
+					castl(current, currentnext);
+					//pocesssort(c.Top, current, currentnext);
 					current = current->Next;
 				}
 				else
@@ -256,32 +257,7 @@ namespace simple_shapes {
 		currentnext->Next->Prev = currentnext;
 		current->Prev->Next = current;*/
 	}
-	void pocesssort(Node *& headt, Node *& current, Node* &currentnext)
-	{
-		//Node* currentnext = current->Next;
-		if (current == headt)//определяем указывает ли на голову
-		{
-			if (current->Next->Next == current)
-			{
-				headt = current->Next;
-			}
-			else
-			{
-				castl(current, currentnext);
-				//headt = current;
-			}
-		}
-		else
-		{
-			if (current->Next->Next == current)
-			{
-				headt = current->Next;
-			}
-			else
-			castl(current, currentnext);
-		}
-	}
-	;
+	
 	void Out_only_plane(container &c, ofstream &ofst) {
 		ofst << "Only planes." << endl;
 		Node* current = c.Top;
