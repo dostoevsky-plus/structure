@@ -14,107 +14,110 @@ namespace Tests
 	public:
 		TEST_METHOD(Plane_Out)
 		{
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			transport *test = In(ifst);
+			ofstream ofst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			OutPlane((plane*)test, ofst);
 			ofst.close();
 			string test_string;
-			ifstream iffst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ifstream iffst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 
 			getline(iffst, test_string);
-			string expected_string = "It is Plane: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1000, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 1, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 187";
+			string expected_string = "It is Plane: грузоподъемность = 1000, дальность полета = 1, груз в данный момент = 187";
 			Assert::AreEqual(expected_string, test_string);
 		};
 		TEST_METHOD(Traine_Out)
 		{
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			transport *test = In(ifst);
 			test = In(ifst);
-			ofstream ofst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ofstream ofst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			OutTraine((traine*)test, ofst);
 			ofst.close();
 			string test_string;
-			ifstream iffst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ifstream iffst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 
 			getline(iffst, test_string);
-			string expected_string = "It is Traine: пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 30";
+			string expected_string = "It is Traine: кол-во вагонов = 30";
 			Assert::AreEqual(expected_string, test_string);
 		};
 		TEST_METHOD(Ship_Out)
 		{
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			transport *test = In(ifst);
 			test = In(ifst);
 			test = In(ifst);
 			test = In(ifst);
-			ofstream ofst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ofstream ofst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			OutShip((ship*)test, ofst);
 			ofst.close();
 			string test_string;
-			ifstream iffst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ifstream iffst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 
 			getline(iffst, test_string);
-			string expected_string = "It is Ship: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 3, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ = TUG";
+			string expected_string = "It is Ship: Водоизмещение = 3, тип судна = TUG";
 			Assert::AreEqual(expected_string, test_string);
 		};
 		TEST_METHOD(Transport_Out)
 		{
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			transport *test = In(ifst);
-			ofstream ofst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ofstream ofst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			Out(test, ofst);
 			ofst.close();
 			string test_string;
-			ifstream iffst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ifstream iffst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 
 			getline(iffst, test_string);
-			string expected_string = "It is Plane: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1000, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 1, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 187, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 150, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 25";
+			string expected_string = "It is Plane: грузоподъемность = 1000, дальность полета = 1, груз в данный момент = 187, расстояние мужду пунктами = 150, скорость = 25";
 			Assert::AreEqual(expected_string, test_string);
 		};
 		TEST_METHOD(Container_Out)
 		{
 			container test;
 			Init(test);
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			In(test, ifst);
-			ofstream ofst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ofstream ofst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			Out(test, ofst);
 			ofst.close();
 
 			string expected_string = " Container contains 4 elements.";
 			//expected_string=expected_string+'\n';
 			string test_string;
-			ifstream iffst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ifstream iffst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "0: It is Plane: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1000, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 1, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 187, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 150, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 25";
+			expected_string = "0: It is Plane: грузоподъемность = 1000, дальность полета = 1, груз в данный момент = 187, расстояние мужду пунктами = 150, скорость = 25";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ = 6";
+			expected_string = "идеальное время пути = 6";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "1: It is Traine: пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 30, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 8000, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 80";
+			expected_string = "1: It is Traine: кол-во вагонов = 30, расстояние мужду пунктами = 8000, скорость = 80";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ = 100";
+			expected_string = "идеальное время пути = 100";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "2: It is Plane: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1000, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 15000, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 900, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1500, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 2500";
+			expected_string = "2: It is Plane: грузоподъемность = 1000, дальность полета = 15000, груз в данный момент = 900, расстояние мужду пунктами = 1500, скорость = 2500";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ = 0.6";
+			expected_string = "идеальное время пути = 0.6";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "3: It is Ship: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 3, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ = TUG, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 700, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 700";
+			expected_string = "3: It is Ship: Водоизмещение = 3, тип судна = TUG, расстояние мужду пунктами = 700, скорость = 700";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ = 1";
+			expected_string = "идеальное время пути = 1";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 		};
@@ -122,24 +125,24 @@ namespace Tests
 		{
 			container test;
 			Init(test);
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			In(test, ifst);
-			ofstream ofst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ofstream ofst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			Out_only_plane(test, ofst);
 			ofst.close();
 
 			string expected_string = "Only planes.";
 			//expected_string=expected_string+'\n';
 			string test_string;
-			ifstream iffst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
+			ifstream iffst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\fileout.txt");
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "0: It is Plane: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1000, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 1, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 187, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 150, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 25";
+			expected_string = "0: It is Plane: грузоподъемность = 1000, дальность полета = 1, груз в данный момент = 187, расстояние мужду пунктами = 150, скорость = 25";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ = 6";
+			expected_string = "идеальное время пути = 6";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
@@ -148,11 +151,11 @@ namespace Tests
 			Assert::AreEqual(expected_string, test_string);
 
 
-			expected_string = "2: It is Plane: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1000, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 15000, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = 900, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1500, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 2500";
+			expected_string = "2: It is Plane: грузоподъемность = 1000, дальность полета = 15000, груз в данный момент = 900, расстояние мужду пунктами = 1500, скорость = 2500";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
-			expected_string = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ = 0.6";
+			expected_string = "идеальное время пути = 0.6";
 			getline(iffst, test_string);
 			Assert::AreEqual(expected_string, test_string);
 
@@ -170,9 +173,9 @@ namespace Tests
 		{
 			container test;
 			Init(test);
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			In(test, ifst);
-			castl(test.Top, test.Top->Next);//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			castl(test.Top, test.Top->Next);//меняем местами
 			float test_time = 100;
 			Assert::AreEqual(test_time, Travel_time(*test.Top->data));
 		};
@@ -180,7 +183,7 @@ namespace Tests
 		{
 			container test;
 			Init(test);
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			In(test, ifst);
 			Sort(test);
 			float test_time = 100;
@@ -198,13 +201,13 @@ namespace Tests
 	public:
 		TEST_METHOD(Travel_time_test)
 		{
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			transport *test = In(ifst);
 			test->distance = 1000;
 			test->spead = 80;
 			float time_test = 12.5;
 			Assert::AreEqual(time_test, Travel_time(*test));
-			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+			//объект другого типа
 			test = In(ifst);
 			test->distance = 1000;
 			test->spead = 80;
@@ -213,7 +216,7 @@ namespace Tests
 		};
 		TEST_METHOD(Compare_test)
 		{
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			transport *test_1 = In(ifst);
 			transport *test_2 = In(ifst);
 			test_1->distance = 100;
@@ -235,7 +238,7 @@ namespace Tests
 			int cargo_test = 187;
 			int key;
 
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			ifst >> key;
 			plane test;
 			InPlane(test, ifst);
@@ -243,7 +246,7 @@ namespace Tests
 			Assert::AreEqual(c_test, test.c);
 			Assert::AreEqual(range_test, test.range);
 			Assert::AreEqual(cargo_test, test.cargo);
-			// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// TODO: Разместите здесь код своего теста
 		};
 
 		TEST_METHOD(Traine_In_test)
@@ -251,13 +254,13 @@ namespace Tests
 			int count_test = 1000;
 			int key;
 
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			ifst >> key;
 			traine test;
 			InTraine(test, ifst);
 			//test.InData(ifst);
 			Assert::AreEqual(count_test, test.count);
-			// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// TODO: Разместите здесь код своего теста
 		};
 
 		TEST_METHOD(Ship_In_test)
@@ -266,14 +269,14 @@ namespace Tests
 			type_of_ship type_test = LINER;
 			int key;
 
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			ifst >> key;
 			ship test;
 			InShip(test, ifst);
 			Assert::AreEqual(water_displacement_test, test.water_displacement);
 			Assert::AreEqual(to_string(type_test), to_string(test.type));
 
-			// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// TODO: Разместите здесь код своего теста
 		};
 		TEST_METHOD(transport_in)
 		{
@@ -284,18 +287,18 @@ namespace Tests
 			int cargo_test = 187;
 
 
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			transport *test = In(ifst);
 
 			Assert::AreEqual(distance_test, test->distance);
 			Assert::AreEqual(spead_test, test->spead);
 			Assert::AreEqual(to_string(c_test) + to_string(cargo_test) + to_string(range_test), get_all((plane*)test));
-			// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// TODO: Разместите здесь код своего теста
 		};
 		TEST_METHOD(container_in)
 		{
 			int count_test = 4;
-			ifstream ifst("C:\\Users\\пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\\Desktop\\Github\\пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
+			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			container test;
 			Init(test);
 			In(test, ifst);
