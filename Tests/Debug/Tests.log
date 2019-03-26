@@ -1,0 +1,6 @@
+﻿  stdafx.cpp
+  unittest1.cpp
+c:\users\владислав\desktop\github\новая папка\consoleapplication1\tests\unittest1.cpp(3): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+c:\users\владислав\desktop\github\новая папка\consoleapplication1\tests\unittest1.cpp(195): warning C4305: =: усечение из "double" в "float"
+     Создается библиотека C:\Users\Владислав\Desktop\Github\Новая папка\ConsoleApplication1\Debug\Tests.lib и объект C:\Users\Владислав\Desktop\Github\Новая папка\ConsoleApplication1\Debug\Tests.exp
+  Tests.vcxproj -> C:\Users\Владислав\Desktop\Github\Новая папка\ConsoleApplication1\Debug\Tests.dll
