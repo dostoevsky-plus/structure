@@ -9,7 +9,7 @@
 #ifndef PCH_H
 #define PCH_H
 
-enum type_of_key {PLANE,TRAINE, SHIP};
+enum type_of_key { PLANE, TRAINE, SHIP };
 enum type_of_ship { LINER, TUG, TANKER };
 struct plane {
 	type_of_key key;

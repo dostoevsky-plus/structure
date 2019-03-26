@@ -1,6 +1,5 @@
 ﻿// ConsoleApplication1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
 #include "pch.h"
 #include <iostream>
 #include <fstream>
@@ -60,7 +59,7 @@ int main(int argc, char* argv[])
 	cout << "Stop" << endl;
 	system("pause");
 	cin >> a;
-	return 0;	
+	return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

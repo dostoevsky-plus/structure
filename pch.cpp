@@ -3,6 +3,7 @@
 #include "pch.h"
 #include <iostream>
 #include <fstream>
+#include<string>
 // В целом этот файл можно пропустить, но не удаляйте его, если вы используете предкомпилированные заголовки.
 
 
@@ -20,7 +21,7 @@ namespace simple_shapes {
 	void Out(transport *s, ofstream &ofst);
 	int addnode(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
-
+	string get_all(plane*p);
 
 
 	float Travel_time(transport &s);
@@ -32,9 +33,9 @@ namespace simple_shapes {
 
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
-		ifst >> p.c  >> p.range >> p.cargo ;
+		ifst >> p.c >> p.range >> p.cargo;
 
-	void Out_only_plane(container &c, ofstream &ofst);
+		void Out_only_plane(container &c, ofstream &ofst);
 
 		return &p;
 	}
@@ -57,7 +58,8 @@ namespace simple_shapes {
 			if (t == 2)
 			{
 				shp.type = TUG;
-			}else
+			}
+			else
 				if (t == 3)
 				{
 					shp.type = LINER;
@@ -87,15 +89,20 @@ namespace simple_shapes {
 	void OutPlane(plane *p, ofstream &ofst)
 	{
 		ofst << "It is Plane: грузоподъемность = " << p->c
-			<< ", дальность полета = " << p->range << ", груз в данный момент = " << p->cargo ;
+			<< ", дальность полета = " << p->range << ", груз в данный момент = " << p->cargo;
 	}
 	void OutTraine(traine * t, ofstream &ofst)
 	{
 		ofst << "It is Traine: кол-во вагонов = " << t->count;
 	}
+	string get_all(plane * p)
+	{
+
+		return string(to_string(p->c) + to_string(p->cargo) + to_string(p->range));
+	}
 	void OutShip(ship * shp, ofstream &ofst)
 	{
-		ofst << "It is Ship: Водоизмещение = " << shp->water_displacement << ", тип судна =" ;
+		ofst << "It is Ship: Водоизмещение = " << shp->water_displacement << ", тип судна = ";
 		if (shp->type == LINER)
 			ofst << "LINER";
 		else if (shp->type == TANKER)
@@ -168,7 +175,7 @@ namespace simple_shapes {
 			}
 		}
 	}
-	
+
 	void In(container &c, ifstream &ifst)
 
 	{
@@ -200,14 +207,14 @@ namespace simple_shapes {
 		else
 			if (key == 3)
 			{
-				ship* shp  = new ship;
+				ship* shp = new ship;
 				s = (transport*)InShip(*shp, ifst);
 				s->key = SHIP;
 				ifst >> s->distance >> s->spead;
 				return s;
 			}
 			else
-			return 0;
+				return 0;
 	}
 	float Travel_time(transport &s)
 	{
@@ -234,7 +241,7 @@ namespace simple_shapes {
 					current = current->Next;
 				}
 				else
-				current = current->Next;
+					current = current->Next;
 			}
 			current = c.Top;
 		}
@@ -257,14 +264,18 @@ namespace simple_shapes {
 		currentnext->Next->Prev = currentnext;
 		current->Prev->Next = current;*/
 	}
-	
+
 	void Out_only_plane(container &c, ofstream &ofst) {
 		ofst << "Only planes." << endl;
 		Node* current = c.Top;
 		for (int i = 0; i < c.count; i++) {
 			ofst << i << ": ";
 			if (current->data->key == type_of_key::PLANE)
+			{
 				Out(current->data, ofst);
+				ofst << "идеальное время пути = "
+					<< Travel_time(*(current->data)) << endl;
+			}
 			else
 				ofst << endl;
 			current = current->Next;
@@ -272,6 +283,6 @@ namespace simple_shapes {
 	}
 }
 
-	
+
 
 
