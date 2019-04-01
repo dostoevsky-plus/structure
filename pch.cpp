@@ -30,26 +30,67 @@ namespace simple_shapes {
 	void castl(Node* &current, Node*&currentnext);
 	//void pocesssort(Node*& headt, Node*& current, Node*& currentnext);
 	void OutShip(ship *shp, ofstream &ofst);
-
+	//функция добавленная в 5 лабе
+	void from_file_to_int(ifstream &ifst, int &field);
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
-		ifst >> p.c >> p.range >> p.cargo;
+
+		//ifst >> p.c;
+		from_file_to_int(ifst, p.c);
+		//ifst >> p.range;
+		from_file_to_int(ifst, p.range);
+		//ifst >> p.cargo;
+		from_file_to_int(ifst, p.cargo);
 
 		void Out_only_plane(container &c, ofstream &ofst);
 
 		return &p;
 	}
+	void simple_shapes::from_file_to_int(ifstream & ifst, int &field)
+	{
+		string str;
+		bool flag=true;
+		ifst >> str;
+		if (str == "")
+		{
+			flag = false;
+		}
+		else
+		{
+
+			for (int i = 0; i < str.length(); i++)
+			{
+				if (isdigit(str[i]))
+				{
+				}
+				else
+					flag = false;
+
+			}
+		}
+		if (flag == false)
+		{
+			cout << "ERROR IN FAILIN.TXT";
+			exit(0);
+		}
+		else
+			field = stoi(str);
+		//return field;
+	}
 
 	traine * InTraine(traine & t, ifstream &ifst)
 	{
-		ifst >> t.count;
+		//ifst >> t.count;
+		from_file_to_int(ifst, t.count);
 		return &t;
 	}
 
 	ship * InShip(ship & shp, ifstream & ifst)
 	{
 		int t;
-		ifst >> shp.water_displacement >> t;
+		//ifst >> shp.water_displacement
+		from_file_to_int(ifst, shp.water_displacement);
+		from_file_to_int(ifst, t);
 		if (t == 1)
 		{
 			shp.type = LINER;
@@ -63,6 +104,11 @@ namespace simple_shapes {
 				if (t == 3)
 				{
 					shp.type = LINER;
+				}
+				else
+				{
+					cout << "ERROR IN FAILIN.TXT";
+					exit(0);
 				}
 		return &shp;
 	}
@@ -188,12 +234,15 @@ namespace simple_shapes {
 	{
 		transport *s = new transport;
 		int key;
-		ifst >> key;
+		from_file_to_int(ifst, key);
+		//ifst >> key;
 		if (key == 1) {
 			plane* p = new plane;
 			s = (transport*)InPlane(*p, ifst);
 			s->key = PLANE;
-			ifst >> s->distance >> s->spead;
+			from_file_to_int(ifst, s->distance);
+			from_file_to_int(ifst, s->spead);
+			//ifst >> s->distance >> s->spead;
 			return s;
 		}
 		else if (key == 2)
@@ -201,7 +250,9 @@ namespace simple_shapes {
 			traine* t = new traine;
 			s = (transport*)InTraine(*t, ifst);
 			s->key = TRAINE;
-			ifst >> s->distance >> s->spead;
+			from_file_to_int(ifst, s->distance);
+			from_file_to_int(ifst, s->spead);
+			//ifst >> s->distance >> s->spead;
 			return s;
 		}
 		else
@@ -210,11 +261,16 @@ namespace simple_shapes {
 				ship* shp = new ship;
 				s = (transport*)InShip(*shp, ifst);
 				s->key = SHIP;
-				ifst >> s->distance >> s->spead;
+				from_file_to_int(ifst, s->distance);
+				from_file_to_int(ifst, s->spead);
+				//ifst >> s->distance >> s->spead;
 				return s;
 			}
 			else
-				return 0;
+			{
+				cout << "ERROR IN FAILIN.TXT";
+				exit(0);
+			};
 	}
 	float Travel_time(transport &s)
 	{
