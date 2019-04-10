@@ -39,18 +39,18 @@ struct transport {
 	int distance;
 };
 
-struct Node {
-	Node() {
-		this->Next = nullptr;
-		this->Prev = nullptr;
+struct node {
+	node() {
+		this->next = nullptr;
+		this->prev = nullptr;
 		this->data = nullptr;
 	};
-	Node* Next;
-	Node* Prev;
+	node* next;
+	node* prev;
 	transport* data;
 };
 struct container {
-	Node* Top;
+	node* top;
 	int count;
 };
 

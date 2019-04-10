@@ -175,9 +175,9 @@ namespace Tests
 			Init(test);
 			ifstream ifst("C:\\Users\\Владислав\\Desktop\\Github\\Новая папка\\ConsoleApplication1\\ConsoleApplication1\\filein.txt");
 			In(test, ifst);
-			castl(test.Top, test.Top->Next);//меняем местами
+			Castl(test.top, test.top->next);//меняем местами
 			float test_time = 100;
-			Assert::AreEqual(test_time, Travel_time(*test.Top->data));
+			Assert::AreEqual(test_time, Travel_time(*test.top->data));
 		};
 		TEST_METHOD(Sort_test)
 		{
@@ -187,13 +187,13 @@ namespace Tests
 			In(test, ifst);
 			Sort(test);
 			float test_time = 100;
-			Assert::AreEqual(test_time, Travel_time(*test.Top->data));
+			Assert::AreEqual(test_time, Travel_time(*test.top->data));
 			test_time = 6;
-			Assert::AreEqual(test_time, Travel_time(*test.Top->Next->data));
+			Assert::AreEqual(test_time, Travel_time(*test.top->next->data));
 			test_time = 1;
-			Assert::AreEqual(test_time, Travel_time(*test.Top->Next->Next->data));
+			Assert::AreEqual(test_time, Travel_time(*test.top->next->next->data));
 			test_time = 0.6;
-			Assert::AreEqual(test_time, Travel_time(*test.Top->Next->Next->Next->data));
+			Assert::AreEqual(test_time, Travel_time(*test.top->next->next->next->data));
 		}
 	};
 	TEST_CLASS(Test_transport_function)
@@ -292,7 +292,7 @@ namespace Tests
 
 			Assert::AreEqual(distance_test, test->distance);
 			Assert::AreEqual(spead_test, test->spead);
-			Assert::AreEqual(to_string(c_test) + to_string(cargo_test) + to_string(range_test), get_all((plane*)test));
+			Assert::AreEqual(to_string(c_test) + to_string(cargo_test) + to_string(range_test), Get_all((plane*)test));
 			// TODO: Разместите здесь код своего теста
 		};
 		TEST_METHOD(container_in)

@@ -9,44 +9,38 @@
 
 using namespace std;
 namespace simple_shapes {
-	void Init(container &c);
-	void Clear(container &c);
-	plane* InPlane(plane &p, ifstream &ifst);
-	traine* InTraine(traine &t, ifstream &ifst);
-	ship* InShip(ship &shp, ifstream &ifst);
-	transport* In(ifstream &ifst);
-	void In(container &c, ifstream &ifst);
-	void OutPlane(plane *p, ofstream &ofst);
-	void Out(container &c, ofstream &ofst);
-	void Out(transport *s, ofstream &ofst);
-	int addnode(container &c, ifstream &ifst);
-	void OutTraine(traine *t, ofstream &ofst);
-	string get_all(plane*p);
+	void Init(container &c);//инициализация контейнера
+	void Clear(container &c);//отчистка контейнера
+	plane* InPlane(plane &p, ifstream &ifst);//ввод
+	traine* InTraine(traine &t, ifstream &ifst);//ввод
+	ship* InShip(ship &shp, ifstream &ifst);//ввод
+	transport* In(ifstream &ifst);//ввод
+	void In(container &c, ifstream &ifst);//ввод
+	void OutPlane(plane *p, ofstream &ofst);//вывод
+	void Out(container &c, ofstream &ofst);//вывод
+	void Out(transport *s, ofstream &ofst);//вывод
+	int Addnode(container &c, ifstream &ifst);//добавление звена списка
+	void OutTraine(traine *t, ofstream &ofst);//вывод
+	string Get_all(plane*p);// ф-ция для тестов
 
 
-	float Travel_time(transport &s);
-	bool Compare(transport *first, transport* second);
-	void Sort(container &c);
-	void castl(Node* &current, Node*&currentnext);
-	//void pocesssort(Node*& headt, Node*& current, Node*& currentnext);
-	void OutShip(ship *shp, ofstream &ofst);
-	//функция добавленная в 5 лабе
-	void from_file_to_int(ifstream &ifst, int &field);
+	float Travel_time(transport &s);// подсчет дополнительного параметра
+	bool Compare(transport *first, transport* second);//сравнение дополнительного параметра у двух элементов списка
+	void Sort(container &c); //сортировка списка
+	void Castl(node* &current, node*&currentnext);//смена местами данныз двух элементов списка
+	void OutShip(ship *shp, ofstream &ofst);//вывод 
+	// проверка данных файла на корректность
+	void From_file_to_int(ifstream &ifst, int &field);
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
-
-		//ifst >> p.c;
-		from_file_to_int(ifst, p.c);
-		//ifst >> p.range;
-		from_file_to_int(ifst, p.range);
-		//ifst >> p.cargo;
-		from_file_to_int(ifst, p.cargo);
+		From_file_to_int(ifst, p.c);
+		From_file_to_int(ifst, p.range);
+		From_file_to_int(ifst, p.cargo);
 
 		void Out_only_plane(container &c, ofstream &ofst);
-
 		return &p;
 	}
-	void simple_shapes::from_file_to_int(ifstream & ifst, int &field)
+	void simple_shapes::From_file_to_int(ifstream & ifst, int &field)
 	{
 		string str;
 		bool flag=true;
@@ -75,22 +69,19 @@ namespace simple_shapes {
 		}
 		else
 			field = stoi(str);
-		//return field;
 	}
 
 	traine * InTraine(traine & t, ifstream &ifst)
 	{
-		//ifst >> t.count;
-		from_file_to_int(ifst, t.count);
+		From_file_to_int(ifst, t.count);
 		return &t;
 	}
 
 	ship * InShip(ship & shp, ifstream & ifst)
 	{
 		int t;
-		//ifst >> shp.water_displacement
-		from_file_to_int(ifst, shp.water_displacement);
-		from_file_to_int(ifst, t);
+		From_file_to_int(ifst, shp.water_displacement);
+		From_file_to_int(ifst, t);
 		if (t == 1)
 		{
 			shp.type = LINER;
@@ -114,18 +105,18 @@ namespace simple_shapes {
 	}
 	void Init(container & c)
 	{
-		c.Top = nullptr;
+		c.top = nullptr;
 		c.count = 0;
 	}
 
 	void Clear(container & c)
 	{
-		Node* current = c.Top;
+		node* current = c.top;
 		int i = 1;
 		while (i < c.count)
 		{
-			current = current->Next;
-			delete current->Prev;
+			current = current->next;
+			delete current->prev;
 			i++;
 		}
 		delete current;
@@ -135,13 +126,13 @@ namespace simple_shapes {
 	void OutPlane(plane *p, ofstream &ofst)
 	{
 		ofst << "It is Plane: грузоподъемность = " << p->c
-			<< ", дальность полета = " << p->range << ", груз в данный момент = " << p->cargo;
+		<< ", дальность полета = " << p->range << ", груз в данный момент = " << p->cargo;
 	}
 	void OutTraine(traine * t, ofstream &ofst)
 	{
 		ofst << "It is Traine: кол-во вагонов = " << t->count;
 	}
-	string get_all(plane * p)
+	string Get_all(plane * p)
 	{
 
 		return string(to_string(p->c) + to_string(p->cargo) + to_string(p->range));
@@ -157,15 +148,16 @@ namespace simple_shapes {
 	}
 	void Out(container & c, ofstream &ofst)
 	{
-		Node* current = c.Top;
+		node* current = c.top;
 		ofst << " Container contains " << c.count
 			<< " elements." << endl;
-		for (int j = 0; j < c.count; j++) {
+		for (int j = 0; j < c.count; j++) 
+		{
 			ofst << j << ": ";
 			Out(current->data, ofst);
 			ofst << "идеальное время пути = "
-				<< Travel_time(*(current->data)) /*<< "часа(ов)"*/ << endl;
-			current = current->Next;
+			<< Travel_time(*(current->data)) << endl;
+			current = current->next;
 		}
 	}
 	void Out(transport *s, ofstream &ofst)
@@ -187,14 +179,14 @@ namespace simple_shapes {
 			cout << "Incorrect figure!" << endl;
 		}
 	}
-	int addnode(container &c, ifstream &ifst)
+	int Addnode(container &c, ifstream &ifst)
 	{
 		if (c.count == 0)
 		{
-			c.Top = new Node;
-			c.Top->Next = c.Top;
-			c.Top->Prev = c.Top;
-			if ((c.Top->data = In(ifst)) != 0)
+			c.top = new node;
+			c.top->next = c.top;
+			c.top->prev = c.top;
+			if ((c.top->data = In(ifst)) != 0)
 				return 1;
 			else
 				return 0;
@@ -202,17 +194,17 @@ namespace simple_shapes {
 		}
 		else
 		{
-			Node *current = c.Top;
+			node *current = c.top;
 			for (int j = 1; j < c.count; j++)
 			{
-				current = current->Next;
+				current = current->next;
 			}
-			current->Next = new Node;
-			if ((current->Next->data = In(ifst)) != 0)
+			current->next = new node;
+			if ((current->next->data = In(ifst)) != 0)
 			{
-				c.Top->Prev = current->Next;
-				current->Next->Prev = current;
-				current->Next->Next = c.Top;
+				c.top->prev = current->next;
+				current->next->prev = current;
+				current->next->next = c.top;
 				return 1;
 			}
 			else
@@ -223,10 +215,10 @@ namespace simple_shapes {
 	}
 
 	void In(container &c, ifstream &ifst)
-
 	{
-		while (!ifst.eof()) {
-			if (addnode(c, ifst) != 0)
+		while (!ifst.eof())
+		{
+			if (Addnode(c, ifst) != 0)
 				c.count++;
 		}
 	}
@@ -234,14 +226,13 @@ namespace simple_shapes {
 	{
 		transport *s = new transport;
 		int key;
-		from_file_to_int(ifst, key);
-		//ifst >> key;
+		From_file_to_int(ifst, key);
 		if (key == 1) {
 			plane* p = new plane;
 			s = (transport*)InPlane(*p, ifst);
 			s->key = PLANE;
-			from_file_to_int(ifst, s->distance);
-			from_file_to_int(ifst, s->spead);
+			From_file_to_int(ifst, s->distance);
+			From_file_to_int(ifst, s->spead);
 			//ifst >> s->distance >> s->spead;
 			return s;
 		}
@@ -250,9 +241,8 @@ namespace simple_shapes {
 			traine* t = new traine;
 			s = (transport*)InTraine(*t, ifst);
 			s->key = TRAINE;
-			from_file_to_int(ifst, s->distance);
-			from_file_to_int(ifst, s->spead);
-			//ifst >> s->distance >> s->spead;
+			From_file_to_int(ifst, s->distance);
+			From_file_to_int(ifst, s->spead);
 			return s;
 		}
 		else
@@ -261,9 +251,8 @@ namespace simple_shapes {
 				ship* shp = new ship;
 				s = (transport*)InShip(*shp, ifst);
 				s->key = SHIP;
-				from_file_to_int(ifst, s->distance);
-				from_file_to_int(ifst, s->spead);
-				//ifst >> s->distance >> s->spead;
+				From_file_to_int(ifst, s->distance);
+				From_file_to_int(ifst, s->spead);
 				return s;
 			}
 			else
@@ -285,56 +274,45 @@ namespace simple_shapes {
 
 	void Sort(container & c)
 	{
-		Node* current;
-		current = c.Top;
-		Node* currentnext = current->Next;
+		node* current;
+		current = c.top;
+		node* currentnext = current->next;
 		for (int i = 1; i < c.count; i++) {
 			for (int j = 1; j < c.count; j++) {
-				if (Compare(current->data, current->Next->data)) {
-					currentnext = current->Next;
-					castl(current, currentnext);
-					//pocesssort(c.Top, current, currentnext);
-					current = current->Next;
+				if (Compare(current->data, current->next->data)) {
+					currentnext = current->next;
+					Castl(current, currentnext);
+					current = current->next;
 				}
 				else
-					current = current->Next;
+					current = current->next;
 			}
-			current = c.Top;
+			current = c.top;
 		}
 	}
-	void castl(Node* &current, Node* &currentnext)
+	void Castl(node* &current, node* &currentnext)
 	{
-		//Node* currentnext = current->Next;
-		//Создаем копии, для смены местами
 		transport * q1 = current->data;
 		transport * q2 = currentnext->data;
 		current->data = q2;
 		currentnext->data = q1;
-		/*current = q2;
-		currentnext = q1;
-		currentnext->Next = current->Next;
-		current->Next = currentnext;
-		current->Prev = currentnext->Prev;
-		currentnext->Prev = current;
-		currentnext = current->Next;
-		currentnext->Next->Prev = currentnext;
-		current->Prev->Next = current;*/
 	}
 
 	void Out_only_plane(container &c, ofstream &ofst) {
 		ofst << "Only planes." << endl;
-		Node* current = c.Top;
-		for (int i = 0; i < c.count; i++) {
+		node* current = c.top;
+		for (int i = 0; i < c.count; i++)
+		{
 			ofst << i << ": ";
 			if (current->data->key == type_of_key::PLANE)
 			{
 				Out(current->data, ofst);
 				ofst << "идеальное время пути = "
-					<< Travel_time(*(current->data)) << endl;
+				<< Travel_time(*(current->data)) << endl;
 			}
 			else
 				ofst << endl;
-			current = current->Next;
+			current = current->next;
 		}
 	}
 }

@@ -9,12 +9,12 @@ namespace simple_shapes {
 	void Clear(container &c);
 	plane* InPlane(plane &p, ifstream &ifst);
 	traine* InTraine(traine &t, ifstream &ifst);
-	Node* In(ifstream &ifst);
+	node* In(ifstream &ifst);
 	void In(container &c, ifstream &ifst);
 	void OutPlane(plane *p, ofstream &ofst);
 	void Out(container &c, ofstream &ofst);
-	void Out(Node *s, ofstream &ofst);
-	int addlist(container &c, ifstream &ifst);
+	void Out(node *s, ofstream &ofst);
+	int Addlist(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
 
 
