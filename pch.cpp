@@ -31,6 +31,71 @@ namespace simple_shapes {
 	void OutShip(ship *shp, ofstream &ofst);//вывод 
 	// проверка данных файла на корректность
 	void From_file_to_int(ifstream &ifst, int &field);
+
+	void MultiMethod(container &c, ofstream &ofst) {
+		ofst << "Multimethod." << endl;
+		node* current_i = c.top;
+		for (int i = 0; i < c.count; i++) {
+			node* current_j = current_i->next;
+			for (int j = i + 1; j < c.count; j++) {
+				switch (current_i->data->key) {
+				case PLANE:
+					switch (current_j->data->key) {
+					case PLANE:
+						ofst << "Plane and Plane." << endl;
+						break;
+					case TRAINE:
+						ofst << "Plane and Traine" << endl;
+						break;
+					case SHIP:
+						ofst << "Plane and Ship" << endl;
+						break;
+					default:
+						ofst << "Unknown type" << endl;
+					}
+					break;
+				case TRAINE:
+					switch (current_j->data->key) {
+					case PLANE:
+						ofst << "Traine and Plane." << endl;
+						break;
+					case TRAINE:
+						ofst << "Traine and Traine" << endl;
+						break;
+					case SHIP:
+						ofst << "Traine and Ship" << endl;
+						break;
+					default:
+						ofst << "Unknown type" << endl;
+					}
+					break;
+				case SHIP:
+					switch (current_j->data->key) {
+					case PLANE:
+						ofst << "Ship and Plane." << endl;
+						break;
+					case TRAINE:
+						ofst << "Ship and Traine" << endl;
+						break;
+					case SHIP:
+						ofst << "Ship and Ship" << endl;
+						break;
+					default:
+						ofst << "Unknown type" << endl;
+					}
+					break;
+				default:
+					ofst << "Unknown type" << endl;
+				}
+				Out(current_i->data, ofst);
+				Out(current_j->data, ofst);
+				current_j = current_j->next;
+
+			}
+			current_i = current_i->next;
+		}
+	}
+
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
 		From_file_to_int(ifst, p.c);
