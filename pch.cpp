@@ -19,6 +19,53 @@ namespace simple_shapes {
 	void Out(transport *s, ofstream &ofst);
 	int addnode(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
+	
+	void MultiMethod(container &c, ofstream &ofst);
+	// Мультиметод
+	void MultiMethod(container &c, ofstream &ofst) {
+		ofst << "Multimethod." << endl;
+		Node* current_i = c.Top;
+		for (int i = 0; i < c.count; i++) {
+			Node* current_j = current_i->Next;
+			for (int j = i + 1; j < c.count; j++) {
+				switch (current_i->data->key) {
+				case PLANE:
+					switch (current_j->data->key) {
+					case PLANE:
+						ofst << "Plane and Plane." << endl;
+						break;
+					case TRAINE:
+						ofst << "Plane and Traine" << endl;
+						break;
+					default:
+						ofst << "Unknown type" << endl;
+					}
+					break;
+				case TRAINE:
+					switch (current_j->data->key) {
+					case PLANE:
+						ofst << "Traine and Plane." << endl;
+						break;
+					case TRAINE:
+						ofst << "Traine and Traine" << endl;
+						break;
+					default:
+						ofst << "Unknown type" << endl;
+					}
+					break;
+				default:
+					ofst << "Unknown type" << endl;
+					
+				}
+				Out(current_i->data, ofst);
+				Out(current_j->data, ofst);
+				current_j = current_j->Next;
+				
+			}
+			current_i = current_i->Next;
+		}
+	}
+
 	plane * InPlane(plane & p, ifstream & ifst)
 	{
 		ifst >> p.c  >> p.range ;

@@ -17,6 +17,9 @@ namespace simple_shapes {
 	void Out(Node *s, ofstream &ofst);
 	int addlist(container &c, ifstream &ifst);
 	void OutTraine(traine *t, ofstream &ofst);
+
+	void MultiMethod(container &c, ofstream &ofst);
+
 }
 using namespace simple_shapes;
 int main(int argc, char* argv[])
@@ -38,6 +41,7 @@ int main(int argc, char* argv[])
 	ofst << "Filled container. " << endl;
 
 	Out(c, ofst);
+	MultiMethod(c, ofst);
 	Clear(c);
 	ofst << "Empty container. " << endl;
 	Out(c, ofst);
